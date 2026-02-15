@@ -5,21 +5,32 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Sales Execution Upgrade | Marcus Erickson</title>
   <meta name="description" content="A focused 10-business-day implementation that delivers AI-powered workflows to improve every rep's execution." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+  
   <style>
     :root{
-      --bg:#0b1220;
-      --panel:#0f1a2e;
-      --text:#e8eefc;
-      --muted:#b7c4e6;
-      --line:rgba(255,255,255,.10);
-      --accent:#6ea8ff;
-      --accent2:#7cf0c5;
-      --shadow: 0 18px 50px rgba(0,0,0,.45);
-      --radius:18px;
-      --radius2:26px;
-      --max: 1060px;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --bg: #f8f9fa;
+      --panel: #f1f3f5;
+      --warm: #f8f9fb;
+      --text: #1a1d21;
+      --muted: #5a6670;
+      --light: #e9ecef;
+      --line: #dee2e6;
+      --accent: #2563eb;
+      --accent-light: #eff6ff;
+      --accent-warm: #1e40af;
+      --success: #10b981;
+      --orange: #f59e0b;
+      --shadow: 0 1px 3px rgba(15,23,42,.08), 0 1px 2px rgba(15,23,42,.03);
+      --shadow-md: 0 4px 6px rgba(15,23,42,.05), 0 2px 4px rgba(15,23,42,.03);
+      --shadow-lg: 0 10px 15px rgba(15,23,42,.08), 0 4px 6px rgba(15,23,42,.03);
+      --radius: 8px;
+      --radius-lg: 12px;
+      --max: 1200px;
+      --sans: 'Inter', -apple-system, system-ui, sans-serif;
+      --serif: 'Crimson Text', Georgia, serif;
     }
 
     *{ box-sizing:border-box; }
@@ -28,422 +39,561 @@
       margin:0;
       font-family:var(--sans);
       color:var(--text);
-      background:
-        radial-gradient(1200px 800px at 15% 10%, rgba(110,168,255,.22), transparent 60%),
-        radial-gradient(1100px 750px at 85% 5%, rgba(124,240,197,.16), transparent 55%),
-        radial-gradient(900px 650px at 60% 95%, rgba(110,168,255,.10), transparent 55%),
-        linear-gradient(180deg, var(--bg), #070c16 70%);
-      line-height:1.55;
+      background: linear-gradient(135deg, var(--panel) 0%, var(--light) 100%);
+      line-height:1.6;
     }
 
     a{ color:inherit; text-decoration:none; }
     a:hover{ text-decoration:underline; }
 
-    .wrap{ max-width:var(--max); margin:0 auto; padding:28px 18px 72px; }
-    .topbar{
+    .container{ 
+      max-width:var(--max); 
+      margin:0 auto; 
+      padding:0 20px; 
+    }
+    
+    header{
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-inner{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:14px;
-      padding:10px 0 18px;
+      padding:20px 0;
+      gap:20px;
     }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      min-width: 260px;
+    .logo{
+      display:flex; 
+      align-items:center; 
+      gap:12px;
+      font-weight:600;
+      color:var(--text);
     }
-    .dot{
-      width:11px; height:11px; border-radius:999px;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 6px rgba(110,168,255,.08);
+    .logo-mark{
+      width:32px; 
+      height:32px; 
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+      border-radius:var(--radius);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:white;
+      font-weight:700;
+      font-size:14px;
+      box-shadow: 0 2px 4px rgba(37,99,235,.15);
     }
-    .brand .name{
-      font-weight:650;
-      letter-spacing:.2px;
+    nav{
+      display:flex; 
+      gap:32px;
     }
-    .brand .role{
+    nav a{
       color:var(--muted);
-      font-size:.92rem;
+      font-weight:500;
+      transition: color .2s ease;
     }
-    .nav{
-      display:flex; flex-wrap:wrap; justify-content:flex-end;
-      gap:10px;
-    }
-    .pill{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      padding:9px 12px;
-      border-radius:999px;
-      font-size:.92rem;
-      color:var(--muted);
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
-      white-space:nowrap;
-    }
-    .pill:hover{
+    nav a:hover{
+      color:var(--text);
       text-decoration:none;
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.16);
-      transform: translateY(-1px);
     }
-
+    
     .hero{
-      margin-top:8px;
-      border:1px solid var(--line);
-      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
+      padding:80px 0 60px;
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(37,99,235,.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(16,185,129,.03) 0%, transparent 50%),
+        linear-gradient(135deg, var(--light) 0%, var(--panel) 100%);
+      position: relative;
+      overflow: hidden;
     }
     .hero::before{
-      content:"";
-      position:absolute; inset:-2px;
-      background:
-        radial-gradient(900px 420px at 15% 20%, rgba(110,168,255,.18), transparent 60%),
-        radial-gradient(850px 420px at 85% 15%, rgba(124,240,197,.12), transparent 60%);
-      pointer-events:none;
-      filter: blur(10px);
-      opacity:.9;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 25px 25px, rgba(37,99,235,.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+      opacity: 0.6;
+      pointer-events: none;
     }
-    .hero-inner{
-      position:relative;
+    .hero-content{
       display:grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap:20px;
-      padding:26px;
+      grid-template-columns: 2fr 1fr;
+      gap:60px;
+      align-items:start;
+      position: relative;
+      z-index: 1;
     }
-    @media (max-width: 920px){
-      .hero-inner{ grid-template-columns: 1fr; }
+    @media (max-width: 968px){
+      .hero-content{ 
+        grid-template-columns: 1fr; 
+        gap:40px;
+        text-align:center;
+      }
     }
-
-    .kicker{
-      display:inline-flex; align-items:center; gap:10px;
-      color:var(--muted);
-      font-size:.92rem;
-      letter-spacing:.2px;
-      margin-bottom:10px;
-      flex-wrap:wrap;
-    }
+    
     .badge{
-      font-family:var(--mono);
-      font-size:.78rem;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      padding:6px 10px;
-      border-radius:999px;
-      color:var(--muted);
-      white-space:nowrap;
-    }
-    h1{
-      margin:0 0 10px;
-      font-size: 2.25rem;
-      line-height:1.15;
-      letter-spacing:-.3px;
-    }
-    .subhead{
-      margin:0 0 16px;
-      color:var(--muted);
-      font-size:1.05rem;
-      max-width: 62ch;
-    }
-    .cta-row{
-      display:flex;
-      flex-wrap:wrap;
-      gap:12px;
+      display:inline-flex;
       align-items:center;
-      margin-top:16px;
+      gap:8px;
+      background: linear-gradient(135deg, var(--accent-light) 0%, rgba(239,246,255,.6) 100%);
+      color:var(--accent);
+      padding:8px 16px;
+      border-radius:20px;
+      font-size:14px;
+      font-weight:600;
+      margin-bottom:24px;
+      border: 1px solid rgba(37,99,235,.1);
+      box-shadow: 0 2px 4px rgba(37,99,235,.05);
+    }
+    
+    h1{
+      font-family:var(--serif);
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight:600;
+      line-height:1.1;
+      margin:0 0 24px;
+      color:var(--text);
+    }
+    
+    .subtitle{
+      font-size:20px;
+      color:var(--muted);
+      margin:0 0 32px;
+      max-width: 600px;
+    }
+    
+    .cta-group{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    @media (max-width: 968px){
+      .cta-group{
+        justify-content:center;
+      }
     }
     .btn{
-      display:inline-flex; align-items:center; justify-content:center;
-      gap:10px;
-      border-radius: 12px;
-      padding:11px 14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.04);
-      color:var(--text);
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:12px 24px;
+      border-radius:var(--radius);
       font-weight:600;
-      transition: transform .15s ease, background .15s ease, border-color .15s ease;
       text-decoration:none;
+      transition: all .2s ease;
+      cursor:pointer;
     }
-    .btn:hover{
-      text-decoration:none;
+    .btn-primary{
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+      color:white;
+      box-shadow: 0 4px 12px rgba(37,99,235,.25), 0 2px 4px rgba(37,99,235,.1);
+      border: none;
+    }
+    .btn-primary:hover{
+      background: linear-gradient(135deg, var(--accent-warm) 0%, #1e3a8a 100%);
       transform: translateY(-1px);
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.22);
+      box-shadow: 0 8px 20px rgba(37,99,235,.3), 0 3px 6px rgba(37,99,235,.15);
+      text-decoration:none;
     }
-    .btn.primary{
-      border:none;
-      background: linear-gradient(135deg, rgba(110,168,255,.95), rgba(124,240,197,.88));
-      color:#0b1220;
-      box-shadow: 0 10px 28px rgba(110,168,255,.22);
-    }
-    .btn.primary:hover{
-      background: linear-gradient(135deg, rgba(110,168,255,1), rgba(124,240,197,1));
-    }
-    .tiny{
-      font-size:.92rem;
-      color:var(--muted);
-      margin-top:10px;
-    }
-
-    .side-card{
+    .btn-secondary{
       border:1px solid var(--line);
-      background: rgba(10,16,30,.55);
-      border-radius: var(--radius);
-      padding:16px;
+      background:var(--bg);
+      color:var(--text);
+    }
+    .btn-secondary:hover{
+      border-color:var(--accent);
+      text-decoration:none;
+    }
+    
+    .stats-card{
+      background: linear-gradient(135deg, rgba(255,255,255,.95) 0%, rgba(255,255,255,.88) 100%);
+      backdrop-filter: blur(10px);
+      border:1px solid rgba(255,255,255,.7);
+      border-radius: var(--radius-lg);
+      padding:32px;
+      box-shadow: 0 8px 32px rgba(15,23,42,.12), 0 1px 2px rgba(15,23,42,.08);
+    }
+    .stats-title{
+      font-weight:600;
+      margin:0 0 20px;
+      color:var(--text);
+    }
+    .stat-item{
       display:flex;
-      flex-direction:column;
+      align-items:flex-start;
       gap:12px;
-      align-self:start;
+      margin:16px 0;
     }
-    .side-title{
-      font-weight:650;
-      letter-spacing:.2px;
-    }
-    .side-item{
-      display:flex; gap:10px; align-items:flex-start;
-      color:var(--muted);
-      font-size:.98rem;
-      padding-top:8px;
-      border-top:1px solid rgba(255,255,255,.08);
-    }
-    .side-item:first-of-type{ border-top:none; padding-top:0; }
     .check{
-      width:18px; height:18px; border-radius:6px;
-      background: rgba(124,240,197,.14);
-      border:1px solid rgba(124,240,197,.22);
-      display:inline-flex; align-items:center; justify-content:center;
-      flex: 0 0 18px;
+      width:20px;
+      height:20px;
+      border-radius:50%;
+      background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+      color:white;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
       margin-top:2px;
+      box-shadow: 0 2px 4px rgba(16,185,129,.2);
     }
-    .check svg{ width:12px; height:12px; fill: var(--accent2); }
-
+    .check::after{
+      content:'✓';
+      font-size:12px;
+      font-weight:bold;
+    }
+    .stat-content{
+      flex:1;
+    }
+    .stat-label{
+      font-weight:600;
+      color:var(--text);
+      display:block;
+      margin-bottom:4px;
+    }
+    .stat-desc{
+      color:var(--muted);
+      font-size:15px;
+      line-height:1.5;
+    }
+    
+    .section{
+      padding:80px 0;
+    }
+    .section-alt{
+      background: linear-gradient(135deg, var(--panel) 0%, #e9ecef 100%);
+    }
+    
+    .section-header{
+      text-align:center;
+      margin-bottom:60px;
+    }
+    .section-title{
+      font-family:var(--serif);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      font-weight:600;
+      margin:0 0 16px;
+      color:var(--text);
+    }
+    .section-desc{
+      font-size:18px;
+      color:var(--muted);
+      max-width:600px;
+      margin:0 auto;
+    }
+    
     .grid{
-      margin-top:22px;
       display:grid;
+      gap:32px;
+    }
+    .grid-2{
       grid-template-columns: 1fr 1fr;
-      gap:16px;
     }
-    @media (max-width: 920px){
-      .grid{ grid-template-columns: 1fr; }
+    .grid-3{
+      grid-template-columns: repeat(3, 1fr);
     }
+    @media (max-width: 968px){
+      .grid-2, .grid-3{ grid-template-columns: 1fr; }
+    }
+    
     .card{
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      padding:18px;
+      background: linear-gradient(135deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.92) 100%);
+      backdrop-filter: blur(5px);
+      border:1px solid rgba(222,226,230,.8);
+      border-radius: var(--radius-lg);
+      padding:32px;
+      height:100%;
+      box-shadow: var(--shadow-md);
+      transition: all 0.2s ease;
     }
-    .card h2{
-      margin:0 0 10px;
-      font-size:1.15rem;
-      letter-spacing:-.1px;
+    .card:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(37,99,235,.15);
+      background: white;
+    }
+    .card h3{
+      font-weight:600;
+      font-size:20px;
+      margin:0 0 16px;
+      color:var(--text);
     }
     .card p{
-      margin:0 0 12px;
+      color:var(--muted);
+      margin:0 0 16px;
+      line-height:1.6;
+    }
+    .card ul{
+      margin:0;
+      padding-left:20px;
       color:var(--muted);
     }
-    .list{
-      margin:0; padding-left:18px; color:var(--muted);
+    .card li{
+      margin:8px 0;
+      line-height:1.5;
     }
-    .list li{ margin:7px 0; }
-
-    .section{
-      margin-top:18px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.02);
-      border-radius: var(--radius2);
-      padding:20px;
-    }
-    .section h3{
-      margin:0 0 10px;
-      font-size:1.05rem;
-      letter-spacing:.1px;
-    }
-    .workflows{
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap:12px;
-      margin-top:12px;
-    }
-    @media (max-width: 980px){
-      .workflows{ grid-template-columns: 1fr; }
-    }
-    .wf{
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(15,26,46,.35);
-      border-radius: var(--radius);
-      padding:16px;
+    
+    .workflow{
+      background: linear-gradient(135deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.92) 100%);
+      backdrop-filter: blur(5px);
+      border:1px solid rgba(222,226,230,.8);
+      border-radius: var(--radius-lg);
+      padding:28px;
       height:100%;
+      box-shadow: var(--shadow-md);
+      transition: all 0.2s ease;
     }
-    .wf .label{
-      font-family:var(--mono);
-      font-size:.78rem;
-      color:rgba(255,255,255,.78);
-      opacity:.9;
+    .workflow:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      background: white;
+    }
+    .workflow-number{
       display:inline-block;
-      background: rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.10);
-      padding:5px 9px;
-      border-radius:999px;
-      margin-bottom:10px;
+      background: linear-gradient(135deg, var(--accent-light) 0%, rgba(239,246,255,.8) 100%);
+      color:var(--accent);
+      padding:6px 12px;
+      border-radius:6px;
+      font-size:12px;
+      font-weight:600;
+      margin-bottom:16px;
+      border: 1px solid rgba(37,99,235,.15);
     }
-    .wf h4{
-      margin:0 0 8px;
-      font-size:1.02rem;
+    .workflow h4{
+      font-size:18px;
+      font-weight:600;
+      margin:0 0 12px;
+      color:var(--text);
     }
-    .wf p{
-      margin:0 0 10px;
+    .workflow p{
       color:var(--muted);
-      font-size:.98rem;
+      margin:0 0 16px;
+      line-height:1.5;
     }
-    .wf .result{
-      border-top:1px solid rgba(255,255,255,.08);
-      padding-top:10px;
-      color: rgba(232,238,252,.92);
-      font-size:.98rem;
+    .workflow-result{
+      border-top:1px solid var(--line);
+      padding-top:16px;
+      color:var(--text);
+      font-weight:500;
     }
-    .muted{ color:var(--muted); }
-
-    .two-col{
+    
+    .timeline{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:16px;
-      margin-top:14px;
+      gap:32px;
+      margin-top:40px;
     }
-    @media (max-width: 920px){
-      .two-col{ grid-template-columns: 1fr; }
+    @media (max-width: 768px){
+      .timeline{ grid-template-columns: 1fr; }
     }
-    .note{
-      border-left:3px solid rgba(110,168,255,.7);
-      padding-left:12px;
-      color:var(--muted);
+    .timeline-item{
+      background: linear-gradient(135deg, rgba(255,255,255,.98) 0%, rgba(255,255,255,.92) 100%);
+      backdrop-filter: blur(5px);
+      border:1px solid rgba(222,226,230,.8);
+      border-radius: var(--radius-lg);
+      padding:32px;
+      box-shadow: var(--shadow-md);
+      transition: all 0.2s ease;
     }
-
-    .footer{
-      margin-top:22px;
-      padding-top:18px;
-      border-top:1px solid rgba(255,255,255,.10);
-      color:var(--muted);
+    .timeline-item:hover{
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+      background: white;
+    }
+    .timeline-title{
+      font-weight:600;
+      font-size:20px;
+      margin:0 0 16px;
+      color:var(--text);
+    }
+    
+    .pricing{
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-warm) 100%);
+      color:white;
+      padding:40px;
+      border-radius: var(--radius-lg);
+      text-align:center;
+      box-shadow: 0 8px 32px rgba(37,99,235,.25), 0 2px 8px rgba(37,99,235,.1);
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing::before{
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .price{
+      font-family:var(--serif);
+      font-size:48px;
+      font-weight:600;
+      margin:0 0 8px;
+    }
+    .pricing p{
+      margin:16px 0;
+      opacity:.9;
+    }
+    
+    footer{
+      background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+      border-top:1px solid #ced4da;
+      padding:40px 0;
+      text-align:center;
+    }
+    .footer-content{
       display:flex;
-      flex-wrap:wrap;
-      gap:10px;
       justify-content:space-between;
       align-items:center;
+      flex-wrap:wrap;
+      gap:20px;
     }
-    .smalllinks{ display:flex; gap:12px; flex-wrap:wrap; }
-    .smalllinks a{ color:var(--muted); }
-    .smalllinks a:hover{ color:var(--text); }
+    .footer-links{
+      display:flex;
+      gap:32px;
+    }
+    .footer-links a{
+      color:var(--muted);
+      font-weight:500;
+    }
+    .footer-links a:hover{
+      color:var(--text);
+      text-decoration:none;
+    }
+    
+    @media (max-width: 768px){
+      .footer-content{
+        flex-direction:column;
+        text-align:center;
+      }
+      .cta-group{
+        justify-content:center;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="topbar">
-      <div class="brand">
-        <span class="dot" aria-hidden="true"></span>
-        <div>
-          <div class="name">Marcus Erickson</div>
-          <div class="role">Sales Execution Advisor</div>
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <div class="logo">
+          <div class="logo-mark">ME</div>
+          <div>
+            <div style="font-weight:600;">Marcus Erickson</div>
+            <div style="font-size:14px;color:var(--muted);font-weight:400;">Sales Execution Consultant</div>
+          </div>
         </div>
       </div>
-      <div class="nav">
-        <a class="pill" href="#what-you-get">What you get</a>
-        <a class="pill" href="#timeline">Timeline</a>
-        <a class="pill" href="#investment">Investment</a>
-        <a class="pill" href="#about">About</a>
-        <a class="pill" href="#contact">Contact</a>
-      </div>
     </div>
+  </header>
 
-    <section class="hero" id="top">
-      <div class="hero-inner">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
         <div>
-          <div class="kicker">
-            <span class="badge">10 business days</span>
-            <span class="badge">2 weeks delivery + 2 weeks support</span>
-          </div>
           <h1>Sales Execution Upgrade</h1>
-          <p class="subhead"><strong>AI-powered workflows that improve every rep’s execution.</strong> As sales teams grow, execution does not always scale as cleanly as headcount does. Follow-ups and call prep start to vary across reps, and managers spend more time fixing small execution gaps.</p>
-          <p class="subhead">This focused implementation delivers structured, AI-powered workflows and trains your team to use them as part of your normal sales process. The goal is simple: faster, more consistent execution in the moments that drive pipeline.</p>
-
-          <div class="cta-row">
-            <a class="btn primary" href="mailto:marcuse@alumni.rice.edu">Email me</a>
-            <a class="btn" href="https://www.linkedin.com/in/marcuserickson/" target="_blank" rel="noopener">LinkedIn</a>
-            <a class="btn" href="#what-you-get">See what you get</a>
+          <p class="subtitle">AI-powered workflows that improve every rep's execution. As sales teams grow, execution doesn't always scale as cleanly as headcount does. This focused implementation delivers structured workflows and trains your team to use them as part of your normal sales process.</p>
+          
+          <div class="cta-group">
+            <a class="btn btn-primary" href="mailto:marcuse@alumni.rice.edu">Get Started</a>
           </div>
-          <div class="tiny">No AI expertise required. Reps run clear workflows with defined inputs and outputs.</div>
         </div>
 
-        <aside class="side-card" aria-label="Quick facts">
-          <div class="side-title">Quick facts</div>
-          <div class="side-item">
-            <span class="check" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.19 9.19a1 1 0 0 1-1.414 0l-4.19-4.19a1 1 0 1 1 1.414-1.414l3.483 3.483 8.483-8.483a1 1 0 0 1 1.414 0Z"/></svg>
-            </span>
-            <div><strong>Built for scale</strong><br><span class="muted">Designed for teams in the 5 to 15 rep range where variability starts to show up.</span></div>
+        <div class="stats-card">
+          <h3 class="stats-title">Designed for Growing Teams</h3>
+          <div class="stat-item">
+            <div class="stat-content">
+              <span class="stat-label">Built for Scale</span>
+              <div class="stat-desc">Teams of 5-15 reps where execution variability starts to impact results</div>
+            </div>
           </div>
-          <div class="side-item">
-            <span class="check" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.19 9.19a1 1 0 0 1-1.414 0l-4.19-4.19a1 1 0 1 1 1.414-1.414l3.483 3.483 8.483-8.483a1 1 0 0 1 1.414 0Z"/></svg>
-            </span>
-            <div><strong>Three workflows</strong><br><span class="muted">Follow-up plus CRM, pre-call prep, and objection responses. Delivered with run cards and examples.</span></div>
+          <div class="stat-item">
+            <div class="stat-content">
+              <span class="stat-label">Three Core Workflows</span>
+              <div class="stat-desc">Follow-up automation, pre-call prep, and objection handling frameworks</div>
+            </div>
           </div>
-          <div class="side-item">
-            <span class="check" aria-hidden="true">
-              <svg viewBox="0 0 24 24"><path d="M20.285 6.709a1 1 0 0 1 0 1.414l-9.19 9.19a1 1 0 0 1-1.414 0l-4.19-4.19a1 1 0 1 1 1.414-1.414l3.483 3.483 8.483-8.483a1 1 0 0 1 1.414 0Z"/></svg>
-            </span>
-            <div><strong>Adoption built-in</strong><br><span class="muted">Rep training plus a manager reinforcement session. Support continues for two weeks after delivery.</span></div>
+          <div class="stat-item">
+            <div class="stat-content">
+              <span class="stat-label">Adoption Focused</span>
+              <div class="stat-desc">Rep training plus manager reinforcement with 2 weeks of support</div>
+            </div>
           </div>
-        </aside>
-      </div>
-    </section>
-
-    <div class="grid">
-      <div class="card">
-        <h2>What this solves</h2>
-        <p>Execution can drift as teams grow. Great reps create their own structure, but that structure does not always transfer to new hires.</p>
-        <ul class="list">
-          <li>Follow-ups vary and next steps are not consistently owned</li>
-          <li>Pre-call prep is uneven and discovery quality fluctuates</li>
-          <li>Objection handling depends too much on individual style</li>
-        </ul>
-      </div>
-      <div class="card">
-        <h2>How AI helps</h2>
-        <p>AI is a leverage tool. When embedded in structured workflows, it helps strong performers move faster and gives every rep a repeatable framework for strong execution.</p>
-        <ul class="list">
-          <li>Clear inputs and outputs, not open-ended prompting</li>
-          <li>Examples built from your materials and messaging</li>
-          <li>Designed to fit the tools you already use</li>
-        </ul>
+        </div>
       </div>
     </div>
+  </section>
 
-    <section class="section" id="what-you-get">
-      <h3>What you get (delivered in 2 weeks)</h3>
-      <div class="workflows">
-        <div class="wf">
-          <div class="label">Workflow 1</div>
-          <h4>Call follow-up plus CRM summary</h4>
-          <p>Turn transcripts or notes into a clear client recap, defined next steps (owner + date), and CRM-ready updates aligned to your pipeline stages.</p>
-          <div class="result"><strong>Result:</strong> Faster follow-ups, clearer ownership, fewer stalled deals.</div>
+  <section class="section section-alt">
+    <div class="container">
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>What This Solves</h3>
+          <p>Execution can drift as teams grow. Great reps create their own structure, but that structure doesn't always transfer to new hires.</p>
+          <ul>
+            <li>Follow-ups vary and next steps aren't consistently owned</li>
+            <li>Pre-call prep is uneven and discovery quality fluctuates</li>
+            <li>Objection handling depends too much on individual style</li>
+          </ul>
         </div>
-        <div class="wf">
-          <div class="label">Workflow 2</div>
-          <h4>Pre-call brief</h4>
-          <p>Generate a structured brief with an account snapshot, persona priorities, tailored discovery questions, and risks to explore.</p>
-          <div class="result"><strong>Result:</strong> More consistent call quality and stronger discovery.</div>
+        <div class="card">
+          <h3>How AI Helps</h3>
+          <p>AI is a leverage tool. When embedded in structured workflows, it helps strong performers move faster and gives every rep a repeatable framework.</p>
+          <ul>
+            <li>Clear inputs and outputs, not open-ended prompting</li>
+            <li>Examples built from your materials and messaging</li>
+            <li>Designed to fit the tools you already use</li>
+          </ul>
         </div>
-        <div class="wf">
-          <div class="label">Workflow 3</div>
-          <h4>Objection response framework</h4>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">What You Get</h2>
+        <p class="section-desc">Delivered in 2 weeks with structured workflows, training materials, and ongoing support</p>
+      </div>
+      
+      <div class="grid grid-3">
+        <div class="workflow">
+          <div class="workflow-number">Workflow 1</div>
+          <h4>Call Follow-up + CRM Summary</h4>
+          <p>Turn transcripts or notes into clear client recap, defined next steps (owner + date), and CRM-ready updates aligned to your pipeline stages.</p>
+          <div class="workflow-result"><strong>Result:</strong> Faster follow-ups, clearer ownership, fewer stalled deals.</div>
+        </div>
+        <div class="workflow">
+          <div class="workflow-number">Workflow 2</div>
+          <h4>Pre-call Brief</h4>
+          <p>Generate structured brief with account snapshot, persona priorities, tailored discovery questions, and risks to explore.</p>
+          <div class="workflow-result"><strong>Result:</strong> More consistent call quality and stronger discovery.</div>
+        </div>
+        <div class="workflow">
+          <div class="workflow-number">Workflow 3</div>
+          <h4>Objection Response Framework</h4>
           <p>Create structured responses, clarifying questions, and follow-up snippets aligned to your approved messaging and proof points.</p>
-          <div class="result"><strong>Result:</strong> More confident objection handling with less messaging drift.</div>
+          <div class="workflow-result"><strong>Result:</strong> More confident objection handling with less messaging drift.</div>
         </div>
       </div>
 
-      <div class="two-col">
-        <div class="card" style="background: rgba(255,255,255,.02);">
-          <h2>Tools plus training (designed to stick)</h2>
-          <ul class="list">
+      <div class="grid grid-2" style="margin-top:60px;">
+        <div class="card">
+          <h3>Tools + Training (Designed to Stick)</h3>
+          <ul>
             <li>Three workflow run cards (when to use, inputs, outputs)</li>
             <li>Prompt library aligned to your messaging</li>
             <li>Usage guidelines plus QA checklist</li>
@@ -451,10 +601,10 @@
             <li>Manager session focused on reinforcement (60 minutes)</li>
           </ul>
         </div>
-        <div class="card" style="background: rgba(255,255,255,.02);">
-          <h2>Scope boundaries</h2>
-          <p class="note">This is a focused execution upgrade designed to work with your existing tools and processes.</p>
-          <ul class="list">
+        <div class="card">
+          <h3>Scope Boundaries</h3>
+          <p>This is a focused execution upgrade designed to work with your existing tools and processes.</p>
+          <ul>
             <li>No CRM implementation or migration</li>
             <li>No automation builds or complex integrations</li>
             <li>No sales process redesign</li>
@@ -462,82 +612,86 @@
           </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="timeline">
-      <h3>Timeline</h3>
-      <div class="two-col">
-        <div class="card" style="background: rgba(255,255,255,.02);">
-          <h2>Weeks 1–2</h2>
+  <section class="section section-alt" id="timeline">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Implementation Process</h2>
+        <p class="section-desc">A structured 4-week engagement with immediate value and lasting adoption</p>
+      </div>
+      
+      <div class="timeline">
+        <div class="timeline-item">
+          <h3 class="timeline-title">Weeks 1-2: Build & Deploy</h3>
           <p>Workflows delivered, refined, and rolled out with live training.</p>
-          <ul class="list">
+          <ul>
             <li>Kickoff and inputs collection</li>
             <li>Workflow build and examples in your tone</li>
             <li>Rep training and manager reinforcement session</li>
           </ul>
         </div>
-        <div class="card" style="background: rgba(255,255,255,.02);">
-          <h2>Weeks 3–4</h2>
-          <p>Two weeks of post-install reinforcement support (async) for tuning, questions, and adoption.</p>
-          <ul class="list">
+        <div class="timeline-item">
+          <h3 class="timeline-title">Weeks 3-4: Support & Optimize</h3>
+          <p>Two weeks of post-install reinforcement support for tuning, questions, and adoption.</p>
+          <ul>
             <li>Answer usage questions as reps begin using workflows</li>
             <li>Light tuning of prompts and run cards</li>
             <li>Keep adoption simple and consistent</li>
           </ul>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="section" id="investment">
-      <h3>Investment</h3>
-      <div class="two-col">
-        <div class="card" style="background: rgba(255,255,255,.02);">
-          <h2>$3,500</h2>
-          <p>50% upfront to reserve start date, 50% due end of Week 1.</p>
-          <p class="muted"><strong>Optional:</strong> $500 workflow audit (credited toward the sprint). A 60-minute working session to confirm the highest-leverage workflows and build a sample output in your context.</p>
-        </div>
-        <div class="card" style="background: rgba(255,255,255,.02);">
-          <h2>What I need from you</h2>
-          <ul class="list">
-            <li>3–5 recent follow-up emails (redacted is fine)</li>
-            <li>1–2 call summaries or transcripts (if available)</li>
-            <li>Pipeline stage names and key fields</li>
-            <li>Approved proof points and claims to avoid</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <h3>About</h3>
-      <div class="two-col">
-        <div class="card" style="background: rgba(255,255,255,.02);">
-          <h2>Marcus Erickson</h2>
-          <p>I’ve spent most of my career working inside small, growing companies. I’ve seen how quickly execution starts to vary as teams scale, even when talent is strong.</p>
-          <p>My focus is helping teams deliver practical workflows that make strong execution repeatable and easier to coach.</p>
-        </div>
-
-        <div class="card" style="background: rgba(255,255,255,.02);" id="contact">
-          <h2>Contact</h2>
-          <p>If you want to compare notes on scaling sales execution, the easiest way to reach me is email.</p>
-          <div class="cta-row">
-            <a class="btn primary" href="mailto:marcuse@alumni.rice.edu">Email me</a>
-            <a class="btn" href="https://www.linkedin.com/in/marcuserickson/" target="_blank" rel="noopener">LinkedIn</a>
+  <section class="section" id="pricing">
+    <div class="container">
+      <div style="max-width:600px;margin:0 auto;">
+        <div class="card">
+          <h3>Option: Start with a Workflow Audit</h3>
+          <p>60-minute working session to see how AI workflows can improve your team's execution (credited toward the Sales Execution Upgrade work if you choose to move on).</p>
+          <div style="margin-top:24px;">
+            <a class="btn btn-primary" href="mailto:marcuse@alumni.rice.edu">Start Your Project</a>
           </div>
-          <p class="tiny">Email: marcuse@alumni.rice.edu</p>
         </div>
-      </div>
-    </section>
-
-    <div class="footer">
-      <div>© <span id="year"></span> Marcus Erickson</div>
-      <div class="smalllinks">
-        <a href="#top">Back to top</a>
-        <a href="https://www.linkedin.com/in/marcuserickson/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="mailto:marcuse@alumni.rice.edu">Email</a>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>About Marcus Erickson</h3>
+          <p>I've spent most of my career working inside small, growing companies. I've seen how quickly execution starts to vary as teams scale, even when talent is strong.</p>
+          <p>My focus is helping teams deliver practical workflows that make strong execution repeatable and easier to coach.</p>
+        </div>
+        <div class="card">
+          <h3>Get In Touch</h3>
+          <p>If you want to compare notes on scaling sales execution, the easiest way to reach me is email.</p>
+          <div style="margin-top:24px;">
+            <div class="cta-group">
+              <a class="btn btn-primary" href="mailto:marcuse@alumni.rice.edu">Email Me</a>
+              <a class="btn btn-secondary" href="https://www.linkedin.com/in/marcuserickson/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div style="color:var(--muted);">© <span id="year"></span> Marcus Erickson</div>
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/marcuserickson/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:marcuse@alumni.rice.edu">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
